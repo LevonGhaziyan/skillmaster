@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="{% static 'exam/style/style.css' %}">
+</head>
+
+<body>
+    {% include 'exam/header.html' %}
+
+    <main class="main_container">
+        <form action="{% url 'exam:create_test' %}" method="post">
+            {% csrf_token %}
+            <div class="input_container">
+                <input type="text" placeholder="Enter test name" id="test_name" name="test_name">
+            </div>
+            <div class="input_container">
+                <input type="number" placeholder="Enter test duration" id="test_duration" name="test_duration">
+            </div>
+            <div class="input_container">
+                <input type="datetime-local" placeholder="Enter test deadline" id="test_deadline" name="test_deadline">
+            </div>
+            <input type="submit" value="Next">
+        </form>
+    </main>
+
+    {% include 'exam/footer.html' %}
+</body>
+
+</html>

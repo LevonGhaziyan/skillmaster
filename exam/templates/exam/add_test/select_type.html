@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="{% static 'exam/style/style.css' %}">
+</head>
+
+<body>
+    {% include 'exam/header.html' %}
+
+    <main class="main_container">
+        <form action="/exam/test/create_test/{{test.id}}/select_question_type" method="post">
+            {% csrf_token %}
+            <div class="input_containe">
+                <select name="question_type" id="question_type_select_box">
+                    {% for question_type in question_types%}
+                    <option value="{{question_type}}">{{question_type}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <input type="submit" value="Next">
+            <a href="/exam/test/create_test/{{test.id}}/review">
+                <input type="button" value="Finish">
+            </a>
+        </form>
+    </main>
+
+    {% include 'exam/footer.html' %}
+</body>
+
+</html>

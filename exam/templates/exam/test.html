@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="{% static 'exam/style/style.css' %}">
+</head>
+
+<body>
+    {% include 'exam/header.html' %}
+
+    <main class="main_container">
+        <h2>{{test}}</h2>
+        <form action="/exam/test/save/{{test.id}}/{{question_number}}/" method="post">
+            {% csrf_token %}
+
+            {% include template with question=question answer=answer %}
+
+            <input type="submit" value="Send">
+        </form>
+    </main>
+
+    {% include 'exam/footer.html' %}
+</body>
+
+</html>

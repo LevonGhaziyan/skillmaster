@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="{% static 'exam/style/style.css' %}">
+</head>
+
+<body>
+    {% include 'exam/header.html' %}
+
+    <main class="main_container">
+        {% if tests %}
+        <div class="available_tests">
+            <h2 class="available_tests_title">Available tests</h2>
+            <table class="available_tests_table">
+                <tr class="available_tests_table_header">
+                    <th class="available_tests_table_test_name available_tests_table_item">Test name</th>
+                    <th class="available_tests_table_pub_date available_tests_table_item">Publication date</th>
+                </tr>
+
+                {% for test in tests %}
+
+                <tr class="available_tests_table_row">
+                    <td class="available_tests_table_test_name available_tests_table_item"><a href="test/{{test.id}}">{{test.test_name}}</a></td>
+                    <td class="available_tests_table_pub_date available_tests_table_item">{{test.pub_date}}</td>
+                </tr>
+
+                {% endfor %}
+            </table>
+        </div>
+        {% else %}
+        <h2>All tests are completed or you don't have any test!!</h2>
+        {% endif %}
+    </main>
+
+    {% include 'exam/footer.html' %}
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="{% static 'exam/style/style.css' %}">
+</head>
+
+<body>
+    {% include 'exam/header.html' %}
+    {% if user.is_authenticated %}
+    <main class="main_container signup_main">
+        <h1>You have already registered!!</h1>
+    </main>
+    {% else %}
+    <main class="main_container signup_main">
+        <div class="signup_inner_container">
+            <h2>Sign up</h2>
+            <form action="{% url 'exam:sign_up' %}" method="post">
+                {% csrf_token %}
+                <div class="input_container">
+                    <input type="text" name="firstname" placeholder="Firstname">
+                </div>
+                <div class="input_container">
+                    <input type="text" name="lastname" placeholder="Lastname">
+                </div>
+                <div class="input_container">
+                    <input type="email" name="email" placeholder="Email">
+                </div>
+                <div class="input_container">
+                    <input type="text" name="username" placeholder="Username">
+                </div>
+                <div class="input_container">
+                    <input type="password" name="password" placeholder="Password">
+                </div>
+
+                <input type="submit" value="Sign up" class="form_submit">
+            </form>
+            <a href="/exam/login/">
+                <p>Log in?</p>
+            </a>
+        </div>
+    </main>
+    {% endif %}
+
+    {% include 'exam/footer.html' %}
+</body>
+
+</html>

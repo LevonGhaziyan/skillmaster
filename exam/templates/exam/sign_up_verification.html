@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="{% static 'exam/style/style.css' %}">
+</head>
+
+<body>
+    {% include 'exam/header.html' %}
+
+    <main class="main_container signup_verification_main">
+        <div class="singnup_verification_inner_container">
+            <h2>Email verification</h2>
+            {% if error %}
+            <p class="error_message">{{error}}</p>
+            {% endif %}
+            <form action="{% url 'exam:sign_up_verification' %}?inner_key={{inner_key}}" method="post">
+                {% csrf_token %}
+                <div class="input_container">
+                    <input type="text" id="verification_code" name="verification_code" placeholder="Verification code">
+                </div>
+                <input type="submit" value="Send">
+            </form>
+        </div>
+    </main>
+
+    {% include 'exam/footer.html' %}
+</body>
+
+</html>

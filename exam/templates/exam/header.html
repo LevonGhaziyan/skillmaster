@@ -1,0 +1,22 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'exam/style/header.css' %}">
+<header class="header_container base">
+    <div class="header_left">
+        <a href="/exam/">
+            <p id="site_name"><strong>SkillMaster</strong></p>
+        </a>
+    </div>
+    {% if user.is_authenticated %}
+    <div class="header_right">
+        <a href="/exam/logout" id="log_out_button">
+            <p>Log Out</p>
+        </a>
+        <div class="username_container">
+            <a href="/exam/user/{{user.username}}">
+                <p class="username">{{user}}</p>
+            </a>
+        </div>
+    </div>
+    {% endif %}
+</header>

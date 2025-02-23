@@ -1,0 +1,29 @@
+.header_container {
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    width: calc(100% - 20px);
+    align-items: center;
+    height: 30px;
+}
+
+.header_right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header_right>* {
+    margin: 0 10px;
+}
+
+#site_name {
+    font-size: 20px;
+}
+
+#log_out_button {
+    text-decoration-line: none;
+    color: black;
+    font-weight: bold;
+}

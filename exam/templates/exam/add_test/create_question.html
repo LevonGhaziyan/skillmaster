@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="{% static 'exam/style/style.css' %}">
+</head>
+
+<body>
+    {% include 'exam/header.html' %}
+
+    <main class="main_container">
+        <form action="/exam/test/create_test/{{test_number}}/create_question?question_type={{question_type}}" method="post">
+            {% csrf_token %}
+            {% include template %}
+            <input type="submit" value="Next">
+        </form>
+    </main>
+
+    {% include 'exam/footer.html' %}
+</body>
+
+</html>

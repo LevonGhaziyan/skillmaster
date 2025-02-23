@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% if questions %}
+    
+    {% for question in questions %}
+    <p>{{question}}</p>
+    {% endfor %}
+
+    <form action="/exam/user/{{user.username}}" method="get">
+        <input type="submit" value="Finish">
+    </form>
+
+    {% else %}
+    <h2>This test doesn't have any questions!!</h2>
+    {% endif %}
+</body>
+</html>

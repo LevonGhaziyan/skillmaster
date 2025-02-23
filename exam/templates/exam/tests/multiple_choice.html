@@ -1,0 +1,9 @@
+<label for="multiple_choice">
+    <h3>{{question.question}}</h3>
+</label>
+{% for question in question.question_info.answer %}
+<div class="multiple_choice_element">
+    <input type="checkbox" name="answer_{{question}}" id="multiple_choice_input" {% if question in answer.answer %} checked {% endif %}>
+    <label>{{question}}</label>
+</div>
+{% endfor %}

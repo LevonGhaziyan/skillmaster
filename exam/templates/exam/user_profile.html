@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="{% static 'exam/style/style.css' %}">
+</head>
+
+<body>
+    {% include 'exam/header.html' %}
+
+    <main class="main_container">
+        <h1>{{user}}</h1>
+        <div>
+            <h2 class="completed_tests_title">Completed tests</h2>
+            {% if tests %}
+            <table class="completed_tests_table">
+                <tr class="completed_tests_table_header">
+                    <th class="completed_tests_table_test_name completed_tests_table_item">Test name</th>
+                    <th class="completed_tests_table_pub_date completed_tests_table_item">Publication date</th>
+                </tr>
+
+                {% for test in tests %}
+
+                <tr class="completed_tests_table_row">
+                    <td class="completed_tests_table_test_name completed_tests_table_item"><a
+                            href="/exam/test/{{test.id}}">{{test.test_name}}</a></td>
+                    <td class="completed_tests_table_pub_date completed_tests_table_item">{{test.pub_date}}</td>
+                </tr>
+
+                {% endfor %}
+            </table>
+            {% else %}
+            <h3>You don't have any completed test!!</h3>
+            {% endif %}
+        </div>
+        <br />
+        <br />
+        <br />
+        <div>
+            <div class="own_tests_header_container">
+                <h2 class="own_tests_title">Own tests</h2>
+                <a href="{% url 'exam:create_test' %}">Add new test</a>
+            </div>
+            {% if own_tests %}
+            <table class="own_tests_table">
+                <tr class="own_tests_table_header">
+                    <th class="own_tests_table_test_name own_tests_table_item">Test name</th>
+                    <th class="own_tests_table_pub_date own_tests_table_item">Publication date</th>
+                </tr>
+
+                {% for test in own_tests %}
+
+                <tr class="own_tests_table_row">
+                    <td class="own_tests_table_test_name own_tests_table_item"><a
+                            href="/exam/test/{{test.id}}">{{test.test_name}}</a></td>
+                    <td class="own_tests_table_pub_date own_tests_table_item">{{test.pub_date}}</td>
+                </tr>
+
+                {% endfor %}
+            </table>
+            {% else %}
+            <h3>You don't have any own test!!</h3>
+            {% endif %}
+        </div>
+    </main>
+
+    {% include 'exam/footer.html' %}
+</body>
+
+</html>
